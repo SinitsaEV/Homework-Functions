@@ -34,7 +34,7 @@ namespace Functions
             float procent = Convert.ToSingle(currentValue) / maxValue * hundredPercent;
             int barValue = Convert.ToInt32(procent * lengthBar / hundredPercent);
             string bar = "";
-            char emptySymbol = ' ';
+            char emptySymbol = '_';
             
             for(int i = 0; i < lengthBar; i++)
             {
