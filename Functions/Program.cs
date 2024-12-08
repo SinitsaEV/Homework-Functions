@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Text;
 
 namespace Functions
@@ -24,23 +24,28 @@ namespace Functions
             Console.Write("Введите ману игрока: ");
             playerMana = Convert.ToInt32(Console.ReadLine());
 
-            DrawBar(maxHealth, playerHealth, lengthBar, healthSymbol);
-            DrawBar(maxMana, playerMana, lengthBar, manaSymbol);
+            DrawBar(CalculateFillBarValue(maxHealth, playerHealth, lengthBar), lengthBar, healthSymbol);
+            DrawBar(CalculateFillBarValue(maxMana, playerMana, lengthBar), lengthBar, manaSymbol);
         }
 
-        private static void DrawBar(int maxValue, int currentValue, int lengthBar, char barSymbol)
+        private static int CalculateFillBarValue(int maxValue, int currentValue, int lengthBar)
         {
             int hundredPercent = 100;
             float procent = Convert.ToSingle(currentValue) / maxValue * hundredPercent;
             int barValue = Convert.ToInt32(procent * lengthBar / hundredPercent);
+            return barValue;
+        }
+
+        private static void DrawBar(int fillBarValue, int lengthBar, char barSymbol)
+        {
             string bar = "";
             char emptySymbol = '_';
-            
-            for(int i = 0; i < lengthBar; i++)
+
+            for (int i = 0; i < lengthBar; i++)
             {
-                if(barValue > 0)
+                if (fillBarValue > 0)
                 {
-                    barValue--;
+                    fillBarValue--;
                     bar += barSymbol;
                 }
                 else
