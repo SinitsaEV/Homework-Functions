@@ -20,8 +20,7 @@ namespace Functions
             string playerInput = Console.ReadLine();
 
             while (int.TryParse(playerInput, out number) == false)
-            {
-                
+            {                
                 if (int.TryParse(playerInput, out number) == false)
                     Console.WriteLine("Ошибка ввода.");
                 
