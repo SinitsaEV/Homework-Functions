@@ -21,9 +21,7 @@ namespace Functions
 
             while (int.TryParse(playerInput, out number) == false)
             {                
-                if (int.TryParse(playerInput, out number) == false)
-                    Console.WriteLine("Ошибка ввода.");
-                
+                Console.WriteLine("Ошибка ввода.");                
                 Console.Write("Введите число: ");
                 playerInput = Console.ReadLine();
             }
