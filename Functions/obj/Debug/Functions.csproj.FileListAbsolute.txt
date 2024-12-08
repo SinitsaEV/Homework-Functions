@@ -1,0 +1,7 @@
+C:\Users\Courses\Desktop\Course\C#_Junior\BasicsOfProgramming\Functions\Functions\bin\Debug\Functions.exe.config
+C:\Users\Courses\Desktop\Course\C#_Junior\BasicsOfProgramming\Functions\Functions\bin\Debug\Functions.exe
+C:\Users\Courses\Desktop\Course\C#_Junior\BasicsOfProgramming\Functions\Functions\bin\Debug\Functions.pdb
+C:\Users\Courses\Desktop\Course\C#_Junior\BasicsOfProgramming\Functions\Functions\obj\Debug\Functions.csproj.AssemblyReference.cache
+C:\Users\Courses\Desktop\Course\C#_Junior\BasicsOfProgramming\Functions\Functions\obj\Debug\Functions.csproj.CoreCompileInputs.cache
+C:\Users\Courses\Desktop\Course\C#_Junior\BasicsOfProgramming\Functions\Functions\obj\Debug\Functions.exe
+C:\Users\Courses\Desktop\Course\C#_Junior\BasicsOfProgramming\Functions\Functions\obj\Debug\Functions.pdb

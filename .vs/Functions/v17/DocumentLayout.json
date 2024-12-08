@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Courses\\Desktop\\Course\\C#_Junior\\BasicsOfProgramming\\Functions\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{7A403471-4566-4BDB-B42F-FCDA92157E39}|Functions\\Functions.csproj|c:\\users\\courses\\desktop\\course\\c#_junior\\basicsofprogramming\\functions\\functions\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7A403471-4566-4BDB-B42F-FCDA92157E39}|Functions\\Functions.csproj|solutionrelative:functions\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Courses\\Desktop\\Course\\C#_Junior\\BasicsOfProgramming\\Functions\\Functions\\Program.cs",
+              "RelativeDocumentMoniker": "Functions\\Program.cs",
+              "ToolTip": "C:\\Users\\Courses\\Desktop\\Course\\C#_Junior\\BasicsOfProgramming\\Functions\\Functions\\Program.cs",
+              "RelativeToolTip": "Functions\\Program.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAQwBcAAABLAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-08T14:51:50.33Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
