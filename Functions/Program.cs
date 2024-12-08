@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Text;
 
 namespace Functions
@@ -14,20 +14,22 @@ namespace Functions
 
         private static int ReadInt()
         {
-            bool isTakeNumber = false;
-            int playerNumber = 0;
+            int number = 0;
 
-            while (isTakeNumber == false)
+            Console.Write("Введите число: ");
+            string playerInput = Console.ReadLine();
+
+            while (int.TryParse(playerInput, out number) == false)
             {
+                
+                if (int.TryParse(playerInput, out number) == false)
+                    Console.WriteLine("Ошибка ввода.");
+                
                 Console.Write("Введите число: ");
-                string playerInput = Console.ReadLine();                
-                isTakeNumber = int.TryParse(playerInput, out playerNumber);
-
-                if (isTakeNumber == false)
-                    Console.WriteLine("Ошибка ввода.");                
+                playerInput = Console.ReadLine();
             }
 
-            return playerNumber;
+            return number;
         }
     }
 }
