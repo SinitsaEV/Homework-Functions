@@ -28,7 +28,7 @@ namespace Functions
             DrawBar(maxMana, playerMana, lengthBar, manaSymbol);
         }
 
-        static private void DrawBar(int maxValue, int currentValue, int lengthBar, char barSymbol)
+        private static void DrawBar(int maxValue, int currentValue, int lengthBar, char barSymbol)
         {
             int hundredPercent = 100;
             float procent = Convert.ToSingle(currentValue) / maxValue * hundredPercent;
