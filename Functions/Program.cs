@@ -42,13 +42,8 @@ namespace Functions
         {
             char emptySymbol = '_';
             string filledBarPart = GetBarPart(barSymbol, fillBarValue);
-            string emptyBarPart = "";
-
-            for(int i = 0; i < lengthBar - filledBarPart.Length; i++)
-            {
-                emptyBarPart += emptySymbol;
-            }
-
+            string emptyBarPart = GetBarPart(emptySymbol, lengthBar - filledBarPart.Length);
+            
             Console.WriteLine('[' + filledBarPart + emptyBarPart + ']');
         }
 
