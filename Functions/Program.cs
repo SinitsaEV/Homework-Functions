@@ -12,18 +12,18 @@ namespace Functions
             Console.WriteLine("Ваше число: " + ReadInt());
         }
 
-        static private int ReadInt()
+        private static int ReadInt()
         {
-            bool IsTakeNumber = false;
+            bool isTakeNumber = false;
             int playerNumber = 0;
 
-            while (IsTakeNumber == false)
+            while (isTakeNumber == false)
             {
                 Console.Write("Введите число: ");
                 string playerInput = Console.ReadLine();                
-                IsTakeNumber = int.TryParse(playerInput, out playerNumber);
+                isTakeNumber = int.TryParse(playerInput, out playerNumber);
 
-                if (IsTakeNumber == false)
+                if (isTakeNumber == false)
                     Console.WriteLine("Ошибка ввода.");                
             }
 
