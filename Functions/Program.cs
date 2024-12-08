@@ -23,38 +23,45 @@ namespace Functions
             playerHealth = Convert.ToInt32(Console.ReadLine());
             Console.Write("Введите ману игрока: ");
             playerMana = Convert.ToInt32(Console.ReadLine());
+            int filledPercent = CalculateFillBarPercent(maxHealth, playerHealth, lengthBar);
 
-            DrawBar(CalculateFillBarValue(maxHealth, playerHealth, lengthBar), lengthBar, healthSymbol);
-            DrawBar(CalculateFillBarValue(maxMana, playerMana, lengthBar), lengthBar, manaSymbol);
+            DrawBar(filledPercent, lengthBar, healthSymbol);
+            filledPercent = CalculateFillBarPercent(maxMana, playerMana, lengthBar);
+            DrawBar(filledPercent, lengthBar, manaSymbol);
         }
 
-        private static int CalculateFillBarValue(int maxValue, int currentValue, int lengthBar)
+        private static int CalculateFillBarPercent(int maxValue, int currentValue, int lengthBar)
         {
             int hundredPercent = 100;
             float procent = Convert.ToSingle(currentValue) / maxValue * hundredPercent;
-            int barValue = Convert.ToInt32(procent * lengthBar / hundredPercent);
-            return barValue;
+            int filledPercent = Convert.ToInt32(procent * lengthBar / hundredPercent);
+            return filledPercent;
         }
 
         private static void DrawBar(int fillBarValue, int lengthBar, char barSymbol)
         {
-            string bar = "";
             char emptySymbol = '_';
+            string filledBarPart = GetBarPart(barSymbol, fillBarValue);
+            string emptyBarPart = "";
 
-            for (int i = 0; i < lengthBar; i++)
+            for(int i = 0; i < lengthBar - filledBarPart.Length; i++)
             {
-                if (fillBarValue > 0)
-                {
-                    fillBarValue--;
-                    bar += barSymbol;
-                }
-                else
-                {
-                    bar += emptySymbol;
-                }
+                emptyBarPart += emptySymbol;
             }
 
-            Console.WriteLine('[' + bar + ']');
+            Console.WriteLine('[' + filledBarPart + emptyBarPart + ']');
+        }
+
+        private static string GetBarPart(char symbol, int length)
+        {
+            string filledSymbols = "";
+
+            for (int i = 0; i < length; i++)
+            {
+                filledSymbols += symbol;
+            }
+
+            return filledSymbols;
         }
     }
 }
