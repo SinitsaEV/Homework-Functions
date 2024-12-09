@@ -7,49 +7,60 @@ namespace Functions
     {
         static void Main(string[] args)
         {
-            int maxHealth = 100;
-            int playerHealth;
-            char healthSymbol = '#';
-
-            int maxMana = 100;
-            int playerMana;
-            char manaSymbol = '@';
-
-            int lengthBar = 10;
+            int[] numbers = new int[10];
+            int maxRandomValue = 9;
+            int minRandomValue = 0;
 
             Console.OutputEncoding = Encoding.Unicode;
 
-            Console.Write("Введите здоровье игрока: ");
-            playerHealth = Convert.ToInt32(Console.ReadLine());
-            Console.Write("Введите ману игрока: ");
-            playerMana = Convert.ToInt32(Console.ReadLine());
+            GetRandomArray(numbers, maxRandomValue, minRandomValue);
 
-            DrawBar(maxHealth, playerHealth, lengthBar, healthSymbol);
-            DrawBar(maxMana, playerMana, lengthBar, manaSymbol);
+            Console.WriteLine("Изначальный массив:");
+            WriteArray(numbers);
+
+            Shuffle(numbers);
+
+            Console.WriteLine("Получили:");
+            WriteArray(numbers);
         }
 
-        static private void DrawBar(int maxValue, int currentValue, int lengthBar, char barSymbol)
+        private static void Shuffle<T>(T[] array)
         {
-            int hundredPercent = 100;
-            float procent = Convert.ToSingle(currentValue) / maxValue * hundredPercent;
-            int barValue = Convert.ToInt32(procent * lengthBar / hundredPercent);
-            string bar = "";
-            char emptySymbol = ' ';
-            
-            for(int i = 0; i < lengthBar; i++)
+            T buffer;
+
+            for (int i = 0; i < array.Length; i++)
             {
-                if(barValue > 0)
-                {
-                    barValue--;
-                    bar += barSymbol;
-                }
-                else
-                {
-                    bar += emptySymbol;
-                }
+                int randomIndex = GetRandomIndex(array.Length);
+                buffer = array[i];
+                array[i] = array[randomIndex];
+                array[randomIndex] = buffer;
+            }
+        }
+
+        private static void WriteArray<T>(T[] array)
+        {
+            foreach (T element in array)
+            {
+                Console.Write(element);
+                Console.Write(' ');
             }
 
-            Console.WriteLine('[' + bar + ']');
+            Console.WriteLine();
+        }
+
+        private static int GetRandomIndex(int length)
+        {
+            Random random = new Random();
+
+            return random.Next(length);
+        }
+
+        private static void GetRandomArray(int[] array, int maxValue, int minValue)
+        {
+            Random random = new Random();
+
+            for (int i = 0; i < array.Length; i++)
+                array[i] = random.Next(minValue, maxValue + 1);
         }
     }
 }
