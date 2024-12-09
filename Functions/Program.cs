@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Text;
 
 namespace Functions
@@ -81,14 +81,14 @@ namespace Functions
 
         private static void IncreaseArray(ref string[] array)
         {
-            string[] temp = new string[array.Length + 1];
+            string[] tempArray = new string[array.Length + 1];
 
             for (int i = 0; i < array.Length; i++)
             {
-                temp[i] = array[i];
+                tempArray[i] = array[i];
             }
 
-            array = temp;
+            array = tempArray;
         }
 
         private static void RemoveDossier(ref string[] fullNames, ref string[] posts, string emptyText)
