@@ -10,13 +10,13 @@ namespace Functions
             const string AddDossierCommand = "1";
             const string RemoveDossierCommand = "2";
             const string FindDossiersCommand = "3";
-            const string WriteDossiersCommand = "4";
+            const string ShowDossiersCommand = "4";
             const string ExitCommand = "5";
 
             string addDossierText = $"{AddDossierCommand} - Добывить досье.\n";
             string removeDossierText = $"{RemoveDossierCommand} - Удалить досье.\n";
             string findDossiersText = $"{FindDossiersCommand} - Найти досье по фамилии.\n";
-            string writeDossiersText = $"{WriteDossiersCommand} - Показать все досье.\n";
+            string showDossiersText = $"{ShowDossiersCommand} - Показать все досье.\n";
             string exitText = $"{ExitCommand} - Выйти из программы.\n";
             string emptyDossiersText = "Список досье пуст, добавте досье.";
 
@@ -33,7 +33,7 @@ namespace Functions
 
             while (isWorking)
             {
-                Console.WriteLine(addDossierText + removeDossierText + findDossiersText + writeDossiersText + exitText);
+                Console.WriteLine(addDossierText + removeDossierText + findDossiersText + showDossiersText + exitText);
                 Console.Write("Введите номер команды: ");
 
                 switch (Console.ReadLine())
@@ -50,8 +50,8 @@ namespace Functions
                         FindDossierByLastName(fullNames, posts, symbolSeparating, emptyDossiersText);
                         break;
 
-                    case WriteDossiersCommand:
-                        WriteDossiers(fullNames, posts, symbolSeparatingDossiers, emptyDossiersText);
+                    case ShowDossiersCommand:
+                        ShowDossiers(fullNames, posts, symbolSeparatingDossiers, emptyDossiersText);
                         break;
 
                     case ExitCommand:
@@ -68,18 +68,20 @@ namespace Functions
         private static void AddDossier(ref string[] fullNames, ref string[] posts)
         {
             Console.Write("Введите ФИО. ");
-            AddElementToArray(ref fullNames, Console.ReadLine());
+            fullNames = AddElementToArray(fullNames, Console.ReadLine());
             Console.Write("Введите должность. ");
-            AddElementToArray(ref posts, Console.ReadLine());
+            posts = AddElementToArray(posts, Console.ReadLine());
         }
 
-        private static void AddElementToArray(ref string[] array, string element)
+        private static string[] AddElementToArray(string[] array, string element)
         {
-            IncreaseArray(ref array);
+            array = IncreaseArray(array);
             array[array.Length - 1] = element;
+
+            return array;
         }
 
-        private static void IncreaseArray(ref string[] array)
+        private static string[] IncreaseArray(string[] array)
         {
             string[] tempArray = new string[array.Length + 1];
 
@@ -88,7 +90,7 @@ namespace Functions
                 tempArray[i] = array[i];
             }
 
-            array = tempArray;
+            return array = tempArray;
         }
 
         private static void RemoveDossier(ref string[] fullNames, ref string[] posts, string emptyText)
@@ -100,30 +102,39 @@ namespace Functions
             }
 
             Console.Write("Введите номер досье: ");
-            int removeElementIndex = Convert.ToInt32(Console.ReadLine()) - 1;
-            RemoveArrayElement(ref fullNames, removeElementIndex);
-            RemoveArrayElement(ref posts, removeElementIndex);
+            int removeElementIndex;
+            bool isNumber = int.TryParse(Console.ReadLine(), out removeElementIndex);
+            removeElementIndex--;
+
+            if (isNumber && removeElementIndex < fullNames.Length)
+            {
+                fullNames = RemoveArrayElement(fullNames, removeElementIndex);
+                posts = RemoveArrayElement(posts, removeElementIndex);
+            }
+            else
+            {
+                Console.WriteLine("Неверный номер досье.");
+            }
         }
 
-        private static void RemoveArrayElement(ref string[] array,int removeElementIndex)
+        private static string[] RemoveArrayElement(string[] array,int removeElementIndex)
         {
             string[] tempArray = new string[array.Length - 1];
-            for (int i = 0; i < array.Length; i++)
+            
+            for(int i = 0; i < removeElementIndex; i++)
             {
-                if (i < removeElementIndex)
-                {
-                    tempArray[i] = array[i];
-                }
-                else if (i > removeElementIndex)
-                {
-                    tempArray[i - 1] = array[i];
-                }
+                tempArray[i] = array[i];
             }
 
-            array = tempArray;
+            for (int i = removeElementIndex + 1; i < array.Length; i++)
+            {
+                tempArray[i - 1] = array[i];
+            }
+
+            return array = tempArray;
         }
 
-        private static void WriteDossiers(string[] fullNames, string[] posts, char symbolSeparating, string emptyText)
+        private static void ShowDossiers(string[] fullNames, string[] posts, char symbolSeparating, string emptyText)
         {
             if (fullNames.Length == 0)
             {
@@ -134,13 +145,13 @@ namespace Functions
             for (int i = 0; i < fullNames.Length; i++)
             {
                 Console.Write(symbolSeparating);
-                WriteDossier(i + 1, fullNames[i], posts[i]);
+                ShowDossier(i + 1, fullNames[i], posts[i]);
             }
 
             Console.WriteLine();
         }
 
-        private static void WriteDossier(int dossierID, string fullName, string post)
+        private static void ShowDossier(int dossierID, string fullName, string post)
         {
             Console.Write(dossierID + " " + fullName + " " + post);
         }
@@ -162,7 +173,7 @@ namespace Functions
 
                 if (temp[0].ToLower() == input.ToLower())
                 {
-                    WriteDossier(i + 1, fullNames[i], posts[i]);
+                    ShowDossier(i + 1, fullNames[i], posts[i]);
                     Console.WriteLine();
                 }
             }
