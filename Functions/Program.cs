@@ -1,4 +1,6 @@
-﻿using System;
+using System;
+using System.Data;
+using System.Text;
 
 namespace Functions
 {
@@ -25,46 +27,60 @@ namespace Functions
             int playerPositionX = 1;
             int playerPositionY = 1;
 
-            while(true)
+            bool isGameActive = true;
+
+            ConsoleKey gameOverKey = ConsoleKey.Escape;
+            string gameOverMessage = $" Для завершения игры нажмите {gameOverKey} ";
+            int gameOverX = 40;
+            int gameOverY = 0;
+
+            Console.OutputEncoding = Encoding.UTF8;
+
+            while (isGameActive)
             {                
                 Console.CursorVisible = false;
 
                 DrawMap(map);
+                WriteMessage(gameOverX, gameOverY, gameOverMessage);
                 DrawPlayer(playerPositionX, playerPositionY, playerSymbol);
 
                 ConsoleKeyInfo pressedKey = Console.ReadKey();
-                HandleInput(pressedKey, ref playerPositionX, ref playerPositionY, map, borderSymbol);
+
+                if(pressedKey.Key != gameOverKey)
+                {
+                    int[] direction = GetDirection(pressedKey);
+                    MovePlayer(map, ref playerPositionX, ref playerPositionY, direction, borderSymbol);
+                }
+                else
+                {
+                    Console.Clear();
+                    isGameActive = false;
+                }
             }            
-        }
-
-        private static void HandleInput(ConsoleKeyInfo pressedKey, ref int playerPositionX, ref int playerPositionY, char[,] map,char borderSymbor)
-        {
-            int[] direction = GetDirection(pressedKey);
-
-            int nextPlayerX = playerPositionX + direction[0];
-            int nextPlayerY = playerPositionY + direction[1];
-
-            if (map[nextPlayerY, nextPlayerX] != borderSymbor)
-            {
-                playerPositionX = nextPlayerX;
-                playerPositionY = nextPlayerY;
-            }
         }
 
         private static int[] GetDirection(ConsoleKeyInfo pressedKey)
         {
             int[] direction = { 0, 0 };
+            int positiveDirection = 1;
+            int negativeDirection = -1;
 
             if (pressedKey.Key == ConsoleKey.UpArrow)
-                direction[1] = -1;
+                direction[1] = negativeDirection;
             else if(pressedKey.Key == ConsoleKey.DownArrow)
-                direction[1] = 1;
+                direction[1] = positiveDirection;
             else if(pressedKey.Key == ConsoleKey.LeftArrow)
-                direction[0] = -1;
+                direction[0] = negativeDirection;
             else if(pressedKey.Key == ConsoleKey.RightArrow)
-                direction[0] = 1;
+                direction[0] = positiveDirection;
             
             return direction;
+        }
+
+        private static void WriteMessage(int positionX, int positionY, string message)
+        {
+            Console.SetCursorPosition(positionX, positionY);
+            Console.Write(message);
         }
 
         private static void DrawMap(char[,] map)
@@ -86,6 +102,18 @@ namespace Functions
         {
             Console.SetCursorPosition(playerPositionX, playerPositionY);
             Console.Write(playerSymbol);
+        }
+
+        private static void MovePlayer(char[,] map, ref int playerPositionX, ref int playerPositionY, int[] direction, char borderSymbor)
+        {
+            int nextPlayerX = playerPositionX + direction[0];
+            int nextPlayerY = playerPositionY + direction[1];
+
+            if (map[nextPlayerY, nextPlayerX] != borderSymbor)
+            {
+                playerPositionX = nextPlayerX;
+                playerPositionY = nextPlayerY;
+            }
         }
     }
 }
