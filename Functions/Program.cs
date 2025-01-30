@@ -65,13 +65,18 @@ namespace Functions
             int positiveDirection = 1;
             int negativeDirection = -1;
 
-            if (pressedKey.Key == ConsoleKey.UpArrow)
+            ConsoleKey moveUpCommand = ConsoleKey.UpArrow;
+            ConsoleKey moveDownCommand = ConsoleKey.DownArrow;
+            ConsoleKey moveLeftCommand = ConsoleKey.LeftArrow;
+            ConsoleKey moveRightCommand = ConsoleKey.RightArrow;
+
+            if (pressedKey.Key == moveUpCommand)
                 direction[1] = negativeDirection;
-            else if(pressedKey.Key == ConsoleKey.DownArrow)
+            else if(pressedKey.Key == moveDownCommand)
                 direction[1] = positiveDirection;
-            else if(pressedKey.Key == ConsoleKey.LeftArrow)
+            else if(pressedKey.Key == moveLeftCommand)
                 direction[0] = negativeDirection;
-            else if(pressedKey.Key == ConsoleKey.RightArrow)
+            else if(pressedKey.Key == moveRightCommand)
                 direction[0] = positiveDirection;
             
             return direction;
